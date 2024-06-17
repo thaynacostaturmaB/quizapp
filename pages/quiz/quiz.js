@@ -86,7 +86,7 @@ function montarPergunta() {
                     </div>
                 </label>
             </form>
-            <button>Responder</button>
+            <button>Responde</button>
         </section>`
 }
 
