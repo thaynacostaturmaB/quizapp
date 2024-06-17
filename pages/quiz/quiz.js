@@ -2,6 +2,7 @@ import { trocarTema,verificarTema } from "../../helpers/tema-helper.js"
 const botaoTema = document.querySelector(".tema button")
 const body=document.querySelector("body")
 const assunto = localStorage.getItem('assunto')
+
 let quiz = {}
 let pontos = 0
 let pergunta = 1
@@ -13,7 +14,9 @@ let respostaCorretaId = ""
 botaoTema.addEventListener("click", ()=>{
     trocarTema( body, botaoTema )
 })
+
 verificarTema( body ,botaoTema)
+
 function alterarAssunto( ){
     const divIcone = document.querySelector('.assunto_icone')
     const iconeImg = document.querySelector('.assunto img')
@@ -24,6 +27,7 @@ function alterarAssunto( ){
     assuntoTitulo.innerText = assunto
     
 }
+
 async function buscarPerguntas(){
     const urlDados = '../../data.json'
     await fetch(urlDados).then(resposta => resposta.json()).then(dados => {
@@ -35,6 +39,7 @@ async function buscarPerguntas(){
     })
     console.log(quiz)
 }
+
 function montarPergunta() {
     const main = document.querySelector('main')
 
@@ -84,9 +89,11 @@ function montarPergunta() {
             <button>Responder</button>
         </section>`
 }
+
 function alterarSinais(texto) {
     return texto.replace(/</g,"&lt;").replace(/>/g,"&gt;",)
 }
+
 function guardarResposta(evento) {
     resposta = evento.target.value
     idInputResposta = evento.target.id
@@ -94,6 +101,7 @@ function guardarResposta(evento) {
     const botaoEnviar = document.querySelector('.alternativas button')
     botaoEnviar.addEventListener("click",validarResposta)
 }
+
 function validarResposta() {
     const botaoEnviar = document.querySelector(".alternativas button")
     botaoEnviar.innerText = "Próxima"
@@ -142,6 +150,7 @@ function adicionarEventoInputs() {
         }
     })
 }
+
 async function iniciar(){
     alterarAssunto()
     await buscarPerguntas()
